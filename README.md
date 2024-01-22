@@ -356,6 +356,8 @@ When creating an application load balancer via Infrastructure as Code (IaC), the
 
 * Alternate vector embedding providers like HuggingFace and/or Amazon Titan would require some code changes (*specifically in the Lambda function(s) that update PGVector via LangChain, and the ECS application running the RAG app*).
 
+* The model used in this sample is [Anthropic's Claude V1 Instant](https://aws.amazon.com/bedrock/claude/). You can change the model by providing an environment variable `FOUNDATION_MODEL_ID` to the rag app in the [rag-app-stack.ts](./lib/rag-app-stack.ts?plain=1#L143). You can find the different model IDs on the [AWS Documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids-arns.html)
+
 * Key concepts / techniques covered in this sample - 
     * PGVector as an Open source Vector database option for RAG applications
     * Running Lambda functions in VPCs to interact with RDS databases in private subnet(s)
