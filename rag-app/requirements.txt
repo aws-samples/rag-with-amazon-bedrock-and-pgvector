@@ -1,0 +1,11 @@
+# langchain==0.0.308
+# langchain==0.0.353
+langchain==0.0.339
+boto3>=1.28.27
+openai
+anthropic
+streamlit
+pgvector
+psycopg2-binary
+tiktoken
+toml

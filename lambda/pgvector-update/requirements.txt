@@ -1,0 +1,6 @@
+pgvector
+openai
+tiktoken
+langchain
+unstructured
+nltk
