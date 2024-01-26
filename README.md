@@ -1,6 +1,6 @@
 # RAG with Amazon Bedrock and PGVector on Amazon RDS
 
-Opinionated sample on how to configure and deploy [RAG (Retrieval Augmented Retrieval)](https://research.ibm.com/blog/retrieval-augmented-generation-RAG) application.
+Opinionated sample on how to configure and deploy [RAG (Retrieval Augmented Generation)](https://research.ibm.com/blog/retrieval-augmented-generation-RAG) application.
 
 It is comprised of a few core pieces:
 
