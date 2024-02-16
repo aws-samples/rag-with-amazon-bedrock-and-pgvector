@@ -89,7 +89,7 @@ This project is divided into a few sub-stacks, so deploying it also requires a f
 
 This is needed because the Application Load Balancer requires [SSL certificates](https://www.cloudflare.com/en-gb/learning/ssl/what-is-an-ssl-certificate/) to have a functioning [HTTPS listener](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/create-https-listener.html). 
 
-    ```
+    
     # switch to the self-signed-cert-utility directory
     cd scripts/self-signed-cert-utility
 
@@ -112,7 +112,7 @@ This is needed because the Application Load Balancer requires [SSL certificates]
 
     # return to the root directory of the project
     cd -
-    ```
+    
 
 If the script runs successfully, you should see a a JSON like object printed out in the log output with parameters like `ServerCertificateName`, `ServerCertificateId`, `Arn` etc. Moreover, the `HTTPStatusCode` should have the value `200`.
 
@@ -163,7 +163,7 @@ The secret was created after the deployment of the `BaseInfraStack` but the valu
 
 [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) is the recommended way to store credentials in AWS, as it provides API based access to credentials for databases etc. Since OpenAI (*the provider we are using the vector emebeddings from*) is an external service and has its own API keys, we need to manually upload that key to Secrets Manager so that the app infrastructure can access it securely.
 
-    ```
+    
     # switch to the api-key-secret-manager-upload directory
     cd scripts/api-key-secret-manager-upload
 
@@ -190,7 +190,7 @@ The secret was created after the deployment of the `BaseInfraStack` but the valu
 
     # return to the root directory of the project
     cd -
-    ```
+    
 
 The script will prompt you to enter you OpenAI API key. It uses the [getpass](https://docs.python.org/3/library/getpass.html) Python library so that you don't have to enter it in plain text.
 
