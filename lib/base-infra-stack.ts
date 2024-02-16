@@ -198,11 +198,6 @@ export class BaseInfraStack extends cdk.Stack {
         vpc: vpc,
         allowAllOutbound: true,
     });
-    // ragAppSecGroup.addIngressRule(
-    //     ec2.Peer.ipv4("0.0.0.0/0"),
-    //     ec2.Port.tcpRange(8500, 8600),
-    //     "Streamlit"
-    // );
     this.ecsTaskSecGroup = ragAppSecGroup;
 
     // Security group for ALB

@@ -21,9 +21,6 @@ export class RDSStack extends cdk.Stack {
     // passed in as property
     const vpc = props.vpc;
 
-    // extract the ID from the default security group object ... might not be needed
-    // const vpcDefaultSecGroupId = ec2.SecurityGroup.fromSecurityGroupId(this, 'defaultSG', vpc.vpcDefaultSecurityGroup);
-
     // create RDS bits (security group and serverless instance)
     const dbName = "postgres";
     const rdsSecGroupName = "rds-security-group";
@@ -33,8 +30,6 @@ export class RDSStack extends cdk.Stack {
       vpc: vpc,
       allowAllOutbound: false,
     });
-    // this might not be needed
-    // rdsSecurityGroup.connections.allowFrom(vpcDefaultSecGroupId, ec2.Port.tcp(5432));
     // allow connection from lambda
     rdsSecurityGroup.connections.allowFrom(props.sgLambda, ec2.Port.tcp(5432));
     // allow connection from test ec2 instance (will be deleted)

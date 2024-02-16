@@ -162,7 +162,6 @@ export class RagAppStack extends cdk.Stack {
         desiredCount: 1,//vpc.availabilityZones.length,
         securityGroups: [props.taskSecGroup],
         minHealthyPercent: 0,
-        // assignPublicIp: true
     });
     // add fargate service as a target to the target group
     props.elbTargetGroup.addTarget(ragAppService);

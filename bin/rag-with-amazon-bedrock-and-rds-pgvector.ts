@@ -12,8 +12,6 @@ import { PGVectorUpdateStack } from '../lib/pgvector-update-stack';
 
 const app = new cdk.App();
 
-// const deploymentEnv = { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION };
-
 // contains vpc, 
 const baseInfra = new BaseInfraStack(app, 'BaseInfraStack', {
 });

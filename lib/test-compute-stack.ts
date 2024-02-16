@@ -43,14 +43,6 @@ export class TestComputeStack extends cdk.Stack {
         roles: [jumpHostRole.roleName]
     });
 
-    // // to test locally (streamlit)
-    // jumpHostSecurityGroup.addIngressRule(
-    //   ec2.Peer.anyIpv4(),
-    //   ec2.Port.tcp(8501),
-    //   'Streamlit default port'
-    // );
-    // this.jumpHostSG = jumpHostSecurityGroup;
-
     const ec2JumpHost = new ec2.Instance(this, 'ec2JumpHost', {
       vpc: props.vpc,
       instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
