@@ -35,28 +35,6 @@ export class RagAppStack extends cdk.Stack {
     });
 
     // This IAM Role is used by tasks
-    const taskRole = new iam.Role(this, "TaskRole", {
-        assumedBy: new iam.ServicePrincipal("ecs-tasks.amazonaws.com"),
-        inlinePolicies: {
-          taskRolePolicy: new iam.PolicyDocument({
-            statements: [
-              new iam.PolicyStatement({
-                effect: iam.Effect.ALLOW,
-                resources: ["*"],
-                actions: [
-                  "cloudwatch:PutMetricData",
-                  "logs:CreateLogGroup",
-                  "logs:CreateLogStream",
-                  "logs:PutLogEvents",
-                  "logs:DescribeLogStreams",
-                ],
-              }),
-            ],
-          }),
-        },
-    });
-
-    // This IAM Role is used by tasks
     const ragTaskRole = new iam.Role(this, "RagTaskRole", {
         assumedBy: new iam.ServicePrincipal("ecs-tasks.amazonaws.com"),
         inlinePolicies: {
