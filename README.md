@@ -136,6 +136,18 @@ export COGNITO_DOMAIN_NAME=<name you want to give to your cognito hosted ui doma
 npm install
 ```
 
+### Bootstrap CDK environment (if not already done)
+
+Bootstrapping provisions resources in your environment such as an Amazon Simple Storage Service (Amazon S3) bucket for storing files and AWS Identity and Access Management (IAM) roles that grant permissions needed to perform deployments. These resources get provisioned in an AWS CloudFormation stack, called the bootstrap stack. It is usually named CDKToolkit. Like any AWS CloudFormation stack, it will appear in the AWS CloudFormation console of your environment once it has been deployed. More details can be found [here](https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping.html).
+
+```
+npx cdk bootstrap
+
+# You can optionally specify `--profile` at the end of that command if you wish to not use the default AWS profile.
+```
+
+NOTE - you only need to do this once per account. If there are other CDK projects deployed in your AWS account, you won't need to do this.
+
 ### Set environment variable (if you are on an M1/M2 Mac)
 
 Depending on the architecture of your computer, you may need to set this environment variable for the docker container. This is because docker containers are dependent on the architecture of the host machine that is building/running them.
