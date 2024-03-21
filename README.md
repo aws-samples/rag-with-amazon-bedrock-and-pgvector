@@ -190,7 +190,7 @@ The secret was created after the deployment of the `BaseInfraStack` but the valu
     pip install -r requirements.txt
 
     # run the script; optionally specify a `--profile` if you're not using the default AWS profile
-    python api-key-secret-manager-upload.py.py -s openAiApiKey
+    python api-key-secret-manager-upload.py -s openAiApiKey
 
     2024-01-14 19:42:59,341 INFO  [__main__]:[MainThread] AWS Profile being used: frgtest
     2024-01-14 19:42:59,421 INFO  [__main__]:[MainThread] Updating Secret: openAiApiKey
