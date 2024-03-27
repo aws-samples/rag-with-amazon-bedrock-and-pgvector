@@ -192,7 +192,7 @@ The secret was created after the deployment of the `BaseInfraStack` but the valu
     # run the script; optionally specify a `--profile` if you're not using the default AWS profile
     python api-key-secret-manager-upload.py -s openAiApiKey
 
-    2024-01-14 19:42:59,341 INFO  [__main__]:[MainThread] AWS Profile being used: frgtest
+    2024-01-14 19:42:59,341 INFO  [__main__]:[MainThread] AWS Profile being used: default
     2024-01-14 19:42:59,421 INFO  [__main__]:[MainThread] Updating Secret: openAiApiKey
     Please enter the API Key:
     2024-01-14 19:44:02,221 INFO  [__main__]:[MainThread] Successfully updated secret value
