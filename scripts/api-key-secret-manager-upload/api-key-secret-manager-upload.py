@@ -12,6 +12,10 @@ LOGGING_FORMAT = "%(asctime)s %(levelname)-5.5s " \
                  "[%(name)s]:[%(threadName)s] " \
                  "%(message)s"
 
+AWS_ACCESS_KEY_ID = "AWS_ACCESS_KEY_ID"
+AWS_SECRET_ACCESS_KEY = "AWS_SECRET_ACCESS_KEY"
+AWS_SESSION_TOKEN = "AWS_SESSION_TOKEN"
+
 
 def _check_missing_field(validation_dict, extraction_key):
     """Check if a field exists in a dictionary
@@ -67,6 +71,10 @@ def _cli_args():
                         "--verbose",
                         action="store_true",
                         help="debug log output")
+    parser.add_argument("-e",
+                        "--env",
+                        action="store_true",
+                        help="Use environment variables for AWS credentials")
     return parser.parse_args()
 
 
@@ -91,8 +99,21 @@ def main():
     # silence chatty libraries
     _silence_noisy_loggers()
 
-    LOGGER.info(f"AWS Profile being used: {args.aws_profile}")
-    boto3.setup_default_session(profile_name=args.aws_profile)
+    if args.env:
+        LOGGER.info(
+            "Attempting to fetch AWS credentials via environment variables")
+        aws_access_key_id = os.environ.get(AWS_ACCESS_KEY_ID)
+        aws_secret_access_key = os.environ.get(AWS_SECRET_ACCESS_KEY)
+        aws_session_token = os.environ.get(AWS_SESSION_TOKEN)
+        if not aws_secret_access_key or not aws_access_key_id or not aws_session_token:
+            raise Exception(
+                f"Missing one or more environment variables - " 
+                f"'{AWS_ACCESS_KEY_ID}', '{AWS_SECRET_ACCESS_KEY}', "
+                f"'{AWS_SESSION_TOKEN}'"
+            )
+    else:
+        LOGGER.info(f"AWS Profile being used: {args.aws_profile}")
+        boto3.setup_default_session(profile_name=args.aws_profile)
 
     sm_client = boto3.client("secretsmanager")
 
