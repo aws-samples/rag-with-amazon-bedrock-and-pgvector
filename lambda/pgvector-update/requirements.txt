@@ -1,3 +1,4 @@
+numpy==2.2.1 
 pgvector
 openai
 tiktoken
