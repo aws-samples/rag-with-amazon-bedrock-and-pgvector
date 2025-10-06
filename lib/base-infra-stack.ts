@@ -38,7 +38,7 @@ export class BaseInfraStack extends cdk.Stack {
 
     NOTE - the AWS profile that is used to deploy should have the same default region
     */
-    let validRegions: string[] = ['us-east-1', 'us-west-2'];
+    let validRegions: string[] = ['us-east-1', 'us-west-2', 'eu-west-2'];
     const regionPrefix = process.env.CDK_DEFAULT_REGION || 'us-east-1';
     console.log(`CDK_DEFAULT_REGION: ${regionPrefix}`);
    // throw error if unsupported CDK_DEFAULT_REGION specified
