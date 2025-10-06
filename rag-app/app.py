@@ -124,13 +124,13 @@ st.markdown("""
 def write_logo():
     col1, col2, col3 = st.columns([5, 1, 5])
     with col2:
-        st.image(AI_ICON, use_column_width='always') 
+        st.image(AI_ICON, use_container_width='always') 
 
 
 def write_top_bar():
     col1, col2, col3 = st.columns([1,10,2])
     with col1:
-        st.image(AI_ICON, use_column_width='always')
+        st.image(AI_ICON, use_container_width='always')
     with col2:
         selected_provider = sys.argv[1]
         provider = selected_provider.capitalize()
@@ -186,7 +186,7 @@ def write_user_message(md):
     col1, col2 = st.columns([1,12])
     
     with col1:
-        st.image(USER_ICON, use_column_width='always')
+        st.image(USER_ICON, use_container_width='always')
     with col2:
         st.warning(md['question'])
 
@@ -205,7 +205,7 @@ def render_result(result):
 def render_answer(answer):
     col1, col2 = st.columns([1,12])
     with col1:
-        st.image(AI_ICON, use_column_width='always')
+        st.image(AI_ICON, use_container_width='always')
     with col2:
         st.info(answer['answer'])
 
