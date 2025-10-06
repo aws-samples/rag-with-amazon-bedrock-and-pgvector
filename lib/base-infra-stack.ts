@@ -14,6 +14,7 @@ import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
 import * as elbv2 from "aws-cdk-lib/aws-elasticloadbalancingv2";
 import * as elbv2_actions from "aws-cdk-lib/aws-elasticloadbalancingv2-actions";
 import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';
+  import * as cloudtrail from "aws-cdk-lib/aws-cloudtrail";
 
 import path = require("path");
 
@@ -30,6 +31,7 @@ export class BaseInfraStack extends cdk.Stack {
   readonly appTargetGroup: elbv2.ApplicationTargetGroup;
   readonly ec2SecGroup: ec2.SecurityGroup;
 
+
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
@@ -45,6 +47,11 @@ export class BaseInfraStack extends cdk.Stack {
     if (!(validRegions.includes(regionPrefix))) {
         throw new Error('Unsupported CDK_DEFAULT_REGION specified')
     };
+
+    // Trail for logging AWS API events
+    const trail = new cloudtrail.Trail(this, 'myCloudTrail', {
+      managementEvents: cloudtrail.ReadWriteType.ALL
+    });
 
   // collection name used by the vector store (used to update and retrieve content)
     this.pgvectorCollectionName = `pgvector-collection-${regionPrefix}-${this.account}`
