@@ -3,5 +3,6 @@ pgvector
 openai
 tiktoken
 langchain
+langchain-community
 unstructured
 nltk
