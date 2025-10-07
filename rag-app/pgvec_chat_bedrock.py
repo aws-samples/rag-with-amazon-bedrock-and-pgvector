@@ -5,6 +5,7 @@ import sys
 from langchain.chains import ConversationalRetrievalChain
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.llms.bedrock import Bedrock
+from langchain_community.chat_models import BedrockChat
 from langchain.prompts import PromptTemplate
 from langchain.vectorstores.pgvector import PGVector
 
@@ -50,12 +51,18 @@ def build_chain(db_creds, collection):
   """
   region = os.environ["AWS_REGION"]
 
-  llm = Bedrock(
-      # credentials_profile_name=credentials_profile_name,
-      region_name = region,
-      model_kwargs={"max_tokens_to_sample":300,"temperature":1,"top_k":250,"top_p":0.999,"anthropic_version":"bedrock-2023-05-31"},
-      model_id=os.environ.get("FOUNDATION_MODEL_ID", "anthropic.claude-instant-v1")
+  llm = BedrockChat(
+    region_name=region,
+    model_id="anthropic.claude-3-haiku-20240307-v1:0",
+    model_kwargs={
+        "temperature": 0.7,
+        "top_k": 250,
+        "top_p": 0.999,
+        "max_tokens": 300,
+        "anthropic_version": "bedrock-2023-05-31"
+    }
   )
+  
   conn_str = PGVector.connection_string_from_db_params(
      driver=os.environ.get("PGVECTOR_DRIVER", "psycopg2"),
      host=db_creds["host"],

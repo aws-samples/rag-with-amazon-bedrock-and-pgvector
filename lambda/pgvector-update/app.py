@@ -4,9 +4,9 @@ import os
 
 import boto3
 from botocore.exceptions import ClientError
-from langchain.document_loaders import S3FileLoader
-from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.vectorstores.pgvector import PGVector
+from langchain_community.document_loaders import S3FileLoader
+from langchain_community.embeddings.openai import OpenAIEmbeddings
+from langchain_community.vectorstores import PGVector
 
 
 LOGGER = logging.getLogger(__name__)
